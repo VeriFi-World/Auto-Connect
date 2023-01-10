@@ -1,0 +1,32 @@
+name: auto_connect_example
+description: Demonstrates how to use the auto_connect plugin.
+
+publish_to: 'none'
+
+environment:
+  sdk: '>=2.17.6 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  auto_connect:
+    path: ../
+
+  cupertino_icons: ^1.0.2
+  equatable: ^2.0.0
+  flutter_bloc: ^8.1.0
+  flutter_local_notifications: ^12.0.0
+  flutter_typeahead: ^4.1.0
+  network_info_plus: ^2.3.0
+  open_settings: ^2.0.0
+  permission_handler: ^10.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
