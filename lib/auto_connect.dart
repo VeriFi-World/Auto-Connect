@@ -209,7 +209,10 @@ class AutoConnect {
         ssidArg: wifi.ssid,
         passwordArg: wifi.password,
       },
-    ).timeout(const Duration(seconds: 20), onTimeout: () => 'Timeout reached');
+    ).timeout(
+      const Duration(seconds: 10),
+      onTimeout: () => 'Timeout reached',
+    );
     return (result != null) ? result : "Failed to connect";
   }
 
