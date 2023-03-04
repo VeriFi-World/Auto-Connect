@@ -98,11 +98,11 @@ public class SwiftAutoConnectPlugin: NSObject, FlutterPlugin,
         }
         if call.method == K.Methods.initialize {
             guard let callbackHandle =
-                    arguments[K.Arguments.callbackDispatcherHandle] as? Int,
-                  let locationEventHandle =
-                    arguments[K.Arguments.locationEventCallbackHandle] as? Int,
-                  let accessPointEventHandle =
-                    arguments[K.Arguments.accessPointEventCallbackHandle] as? Int
+                arguments[K.Arguments.callbackDispatcherHandle] as? Int,
+                let locationEventHandle =
+                arguments[K.Arguments.locationEventCallbackHandle] as? Int,
+                let accessPointEventHandle =
+                arguments[K.Arguments.accessPointEventCallbackHandle] as? Int
             else {
                 result(FlutterError(
                     code: "invalid-args",
@@ -216,13 +216,13 @@ public class SwiftAutoConnectPlugin: NSObject, FlutterPlugin,
             result(true)
             return
 
-        } else if call.method == K.Methods.verifyAccessPoint {
+        } else if call.method == K.Methods.connectToAccessPoint {
             self.result = result
             guard let ssid = arguments[K.Arguments.ssid] as? String,
                   let password = arguments[K.Arguments.password] as? String
             else {
                 debugPrint(
-                    "Failed to extract args from \(K.Methods.verifyAccessPoint) call"
+                    "Failed to extract args from \(K.Methods.connectToAccessPoint) call"
                 )
                 result(false)
                 return
@@ -424,7 +424,7 @@ public class SwiftAutoConnectPlugin: NSObject, FlutterPlugin,
                     K.Arguments
                         .accessPointEventCallbackHandle: getAccessPointEventCallbackHandle(
                         ),
-                    K.Arguments.geofenceId: self.accessPointId ?? "",
+                    K.Arguments.geofenceId: accessPointId ?? "",
                     K.Arguments.ssid: "",
                     K.Arguments.connectionResult: error!.localizedDescription,
                 ]
@@ -440,7 +440,6 @@ public class SwiftAutoConnectPlugin: NSObject, FlutterPlugin,
                         arguments: argsJsonString
                     )
                 }
-            // verifyAccessPoint
             } else {
                 result!(error!.localizedDescription)
             }
@@ -455,7 +454,7 @@ public class SwiftAutoConnectPlugin: NSObject, FlutterPlugin,
                     K.Arguments
                         .accessPointEventCallbackHandle: getAccessPointEventCallbackHandle(
                         ),
-                    K.Arguments.geofenceId: self.accessPointId ?? "",
+                    K.Arguments.geofenceId: accessPointId ?? "",
                     K.Arguments.ssid: "",
                     K.Arguments.connectionResult: "Failed to connect",
                 ]
@@ -471,7 +470,6 @@ public class SwiftAutoConnectPlugin: NSObject, FlutterPlugin,
                         arguments: argsJsonString
                     )
                 }
-                // verifyAccessPoint
             } else {
                 result!("Failed to connect")
             }
@@ -480,7 +478,7 @@ public class SwiftAutoConnectPlugin: NSObject, FlutterPlugin,
                 K.Arguments
                     .accessPointEventCallbackHandle: getAccessPointEventCallbackHandle(
                     ),
-                K.Arguments.geofenceId: self.accessPointId ?? "",
+                K.Arguments.geofenceId: accessPointId ?? "",
                 K.Arguments.ssid: network!.ssid,
                 K.Arguments.connectionResult: "Success",
             ]

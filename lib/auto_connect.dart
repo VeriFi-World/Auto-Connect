@@ -166,11 +166,9 @@ class AutoConnect {
       addGeofenceWithAccessPointMethod,
       args,
     );
-    if (result == null) {
-      debugPrint("No result for addGeofence");
-      return;
-    }
-    debugPrint("Geofence ${(result) ? 'added successfully' : 'failed'}");
+    debugPrint(
+      "Geofence ${(result != null && result) ? 'added successfully' : 'failed'}",
+    );
   }
 
   /// Remove geofence and access point from the device.
@@ -178,13 +176,16 @@ class AutoConnect {
   static Future<void> removeAccessPointWithGeofence(String id) async {
     debugPrint("removeAccessPointWithGeofence called");
     // Call platform code
-    await mainChannel.invokeMethod<bool>(
+    final result = await mainChannel.invokeMethod<bool>(
       removeGeofenceWithAccessPointMethod,
       {geofenceIdArg: id},
     );
+    debugPrint(
+      "Geofence ${(result != null && result) ? 'removed successfully' : 'remove failed'}",
+    );
   }
 
-  /// Verifies nearby access point.
+  /// Connect to a nearby access point.
   ///
   /// This method should only be called after verifying user is within
   /// proximity of access point.
@@ -199,12 +200,12 @@ class AutoConnect {
   /// Returns 'Success' if operation completed successfully. Otherwise,
   /// returns a string containing the reason the verification failed.
   ///
-  static Future<String> verifyAccessPoint({
+  static Future<String> connectToAccessPoint({
     required WiFi wifi,
   }) async {
     // Call platform code and await result
     final result = await mainChannel.invokeMethod<String>(
-      verifyAccessPointMethod,
+      connectToAccessPointMethod,
       {
         ssidArg: wifi.ssid,
         passwordArg: wifi.password,

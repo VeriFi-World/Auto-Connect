@@ -48,7 +48,7 @@ class AutoConnectMethodCallHandler(
         args,
         result,
       )
-      AutoConnectAction.VERIFY_AP_SUGGESTION -> handleVerifyAPSuggestion(
+      AutoConnectAction.CONNECT_TO_AP -> handleConnectToAccessPoint(
         args,
         result,
       )
@@ -175,7 +175,7 @@ class AutoConnectMethodCallHandler(
     return true
   }
 
-  private fun handleVerifyAPSuggestion(
+  private fun handleConnectToAccessPoint(
     args: Map<String, Any>?,
     result: MethodChannel.Result
   ): Boolean {

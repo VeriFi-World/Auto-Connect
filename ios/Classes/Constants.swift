@@ -1,11 +1,12 @@
 import Foundation
 
 struct K {
-    struct Channels {
-        static let mainChannel  = "plugins.verifi.world/auto_connect"
+    enum Channels {
+        static let mainChannel = "plugins.verifi.world/auto_connect"
         static let backgroundChannel = "plugins.verifi.world/auto_connect_background"
     }
-    struct Methods {
+
+    enum Methods {
         // Foreground channel methods
         static let initialize = "initialize"
         static let startActivityMonitoring = "startActivityMonitoring"
@@ -14,7 +15,7 @@ struct K {
         static let getPinnedGeofences = "getPinnedGeofences"
         static let addGeofenceWithAccessPoint = "addGeofenceWithAccessPoint"
         static let removeGeofenceWithAccessPoint = "removeGeofenceWithAccessPoint"
-        static let verifyAccessPoint = "verifyAccessPoint"
+        static let connectToAccessPoint = "connectToAccessPoint"
         static let addPinAccessPoint = "addPinAccessPoint"
         static let removePinAccessPoint = "removePinAccessPoint"
         static let isAccessPointPinned = "isAccessPointPinned"
@@ -25,8 +26,8 @@ struct K {
         static let locationEventCompleted = "locationEventCompleted"
         static let accessPointEventCompleted = "accessPointEventCompleted"
     }
-    
-    struct Arguments {
+
+    enum Arguments {
         // Callback handle arguments
         static let callbackDispatcherHandle = "callbackDispatcherHandle"
         static let locationEventCallbackHandle = "locationEventCallbackHandle"

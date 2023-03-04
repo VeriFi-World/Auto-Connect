@@ -57,6 +57,12 @@ class Home extends StatelessWidget {
               ),
               onPressed: () => _removeHomeWAP(),
             ),
+            TextButton(
+              child: const Text(
+                'Remove All Geofences',
+              ),
+              onPressed: () => _removeAllGeofences(),
+            ),
           ],
         ),
       ),
@@ -103,6 +109,10 @@ class Home extends StatelessWidget {
 
   void _removeHomeWAP() {
     AutoConnect.removeAccessPointWithGeofence('home');
+  }
+
+  void _removeAllGeofences() {
+    AutoConnect.removeAllGeofences();
   }
 }
 

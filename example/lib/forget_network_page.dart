@@ -87,7 +87,7 @@ class _ForgetNetworkPageState extends State<ForgetNetworkPage> {
               child: ElevatedButton(
                 onPressed: () async {
                   final messenger = ScaffoldMessenger.of(context);
-                  final result = await AutoConnect.verifyAccessPoint(
+                  final result = await AutoConnect.connectToAccessPoint(
                     wifi: WiFi(
                       ssid: context.read<AddNetworkCubit>().state!.ssid,
                       password:
